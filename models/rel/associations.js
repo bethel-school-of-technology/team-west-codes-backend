@@ -9,7 +9,7 @@ module.exports = function(models) {
             through: models.user_rec,
             foreignKey: 'RecipeId'
         });
-    models.users.belongsToMany(models.recipes, 
+    /*models.users.belongsToMany(models.recipes, 
         { 
             through: models.favorite,
             foreignKey: 'UserId'
@@ -18,5 +18,5 @@ module.exports = function(models) {
         {
             through: models.favorite,
             foreignKey: 'RecipeId'
-        });
+        });*/
 }

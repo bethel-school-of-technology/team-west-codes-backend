@@ -1,17 +1,21 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var users = sequelize.define(
+  var user_rec = sequelize.define(
     'user_rec',
     {
-      UserId: {
+      Id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
       },
+      UserId: {
+        allowNull: false,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
       RecipeId: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
       }

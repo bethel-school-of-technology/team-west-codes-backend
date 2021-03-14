@@ -1,5 +1,56 @@
 {
     "tables": {
+        "favorites": {
+            "tableName": "favorites",
+            "schema": {
+                "FavId": {
+                    "allowNull": false,
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "field": "FavId",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "Recip_ID": {
+                    "allowNull": false,
+                    "foreignKey": true,
+                    "field": "Recip_ID",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "User_ID": {
+                    "allowNull": false,
+                    "foreignKey": true,
+                    "field": "User_ID",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "Tried": {
+                    "allowNull": true,
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "Tried",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "Loved_it": {
+                    "allowNull": true,
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "Loved_it",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
         "recipes": {
             "tableName": "recipes",
             "schema": {
@@ -146,5 +197,5 @@
             "indexes": []
         }
     },
-    "revision": 6
+    "revision": 7
 }
