@@ -1,0 +1,246 @@
+{
+	"info": {
+		"_postman_id": "b60bace8-023b-4f04-8d5e-8d259e441582",
+		"name": "Recipes from the heart",
+		"description": "Final project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/users/profile",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all recipes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/recipes/createRecipe",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"recipes",
+						"createRecipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/users/profile/6",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"profile",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get recipes by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/recipes/editRecipe/9",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"recipes",
+						"editRecipe",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"FirstName\": \"Glenn7\",\r\n    \"LastName\": \"testg7\",\r\n    \"Email\": \"testg7@email.com\",\r\n    \"Username\": \"testg7\",\r\n    \"Password\": \"testg7\",\r\n    \"Admin\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/users/signup/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"signup",
+						""
+					]
+				},
+				"description": "This is working with the post in the index route but is only working to check the duplicate user in the check then create route"
+			},
+			"response": []
+		},
+		{
+			"name": "Create recipe",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Title\": \"Brownies\",\r\n    \"Ingredients\": \"1 cup Milk\",\r\n    \"Steps\": \"1. pour\",\r\n    \"Serving_Size\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/recipes/createRecipe",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"recipes",
+						"createRecipe"
+					]
+				},
+				"description": "This is working with the post in the index route but is only working to check the duplicate user in the check then create route"
+			},
+			"response": []
+		},
+		{
+			"name": "Update user by ID",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"FirstName\": \"Leroy123\",\r\n    \"LastName\": \"testertest\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/users/profile/7",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"profile",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update recipes by ID",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Title\": \"Chicken\",\r\n    \"Serving_Size\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/recipes/editRecipe/2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"recipes",
+						"editRecipe",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/users/profile/4",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"profile",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete recipes by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/recipes/deleteRecipe/9",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"recipes",
+						"deleteRecipe",
+						"9"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
