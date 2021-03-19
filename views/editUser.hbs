@@ -1,0 +1,34 @@
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap" rel="stylesheet">
+
+<h1 class="welcome">User Information for:</h1>
+<h1> {{userData.FirstName}} {{userData.LastName}} </h1>
+<h3>User Id: {{userData.UserId}} </h3>
+<h3>Username: {{userData.Username}} </h3>
+<h3>Email: {{userData.Email}}</h3>
+<br>
+
+{{!-- USER'S POST LIST --}}
+<div class="inputBackground">
+    <h2>User's Post List:</h2>
+    <ul>
+        {{#each userData.posts}}
+        <li>
+            <h4>{{PostTitle}}</h4>
+            <p>Deleted Status: {{Deleted}}</p>
+            <form method="POST" action="/posts/admin/deletePost/{{PostId}}">
+            <input type="submit" value="Delete Post">
+            </form>
+        </li>
+        {{/each}}
+    </ul>
+</div>
+<br>
+
+{{!-- DELETE USER --}}
+<form method="POST" action="/users/admin/delete/{{userData.UserId}}">
+    <input type="submit" value="Delete User">
+</form>
+<br>
+<br>
+<a class="aB" href="/users/admin">Back</a>
+<a class="aB" href="/users/logout">Logout</a>

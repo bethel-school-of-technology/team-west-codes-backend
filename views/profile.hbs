@@ -1,4 +1,22 @@
-<h1>{{title}} Test</h1>
-<p>Welcome to {{title}}
-    test
-</p>
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap" rel="stylesheet">
+
+<h1 class="welcome">Hello {{usersData.FirstName}} {{usersData.LastName}} </h1>
+<h3>Username: {{usersData.Username}} </h3>
+<div class="inputBackground">
+<h2>Your Recipe List:</h2>
+<ul>
+    {{#each users.Recipes}}
+    <li>
+        <form method="GET" action="/recipes/editrecipes/{{RecipeId}}">
+            <a href="/recipes/editrecipes/{{RecipeId}}">{{Title}}</a>
+        </form>
+    </li>
+    {{/each}}
+   
+</ul>
+ <h4>Click on a Recipe to Edit or Delete</h4>
+</div>
+<br>
+<a class="aB" href="/recipes/createRecipe">Share a Recipe</a>
+<a class="aB" href="/users/logout">Logout</a>
+<a class="aB" href="/users/admin">I am Admin</a>

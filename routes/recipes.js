@@ -10,12 +10,13 @@ router.get('/', function(req, res, next) {
 */
 //recipes
 
-router.get('/createRecipe', function(req, res, next) {
+router.get('/editRecipe', function(req, res, next) {
   models.recipes
     .findAll({include: [{ model: models.users }]})
     .then(recipesFound => {
-      res.setHeader('Content-Type', 'application/json');
-      res.send(JSON.stringify(recipesFound));
+      res.render('createRecipe', { title: 'Recipes from the Heart' });
+      //res.setHeader('Content-Type', 'application/json');
+      //res.send(JSON.stringify(recipesFound));
     });
 });
 
@@ -35,7 +36,8 @@ router.post('/createRecipe', function (req, res, next) {
     where: { 
       Title: req.body.Title, 
       Ingredients: req.body.Ingredients,
-      Steps:  req.body.Steps
+      Steps:  req.body.Steps,
+      //UserId: req.body.UserId
     }
   })
   .spread(function(result, created) {

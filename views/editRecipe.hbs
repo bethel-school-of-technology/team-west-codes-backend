@@ -1,0 +1,37 @@
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap" rel="stylesheet">
+
+<h3 class="welcome">{{recipes.Title}}</h3>
+<h3>Recipe Id: {{recipes.RecipeId}}</h3>
+{{!-- <h3>Post Created: {{post.PostDate}}</h3> --}}
+
+
+
+<form method="POST" action="/recipes/createRecipe/{{recipes.RecipeId}}">
+<h2 class="welcome2">Add user ID:</h2>
+    <input class="title" name="UserId" type="number" value="{{recipes.UserId}}">
+<h2 class="welcome2">Add Recipe Title:</h2>
+    <input class="title" name="Title" type="text" value="{{recipes.Title}}">
+<h2 class="welcome2">Add Recipe Steps:</h2>
+    <input class="body" name="Steps" type="text" value="{{recipes.Steps}}">
+<h2 class="welcome2">Add Recipe Ingredients:</h2>
+    <input class="title" name="Ingredients" type="text" value="{{recipes.Ingredients}}">
+    <br>
+    <br>
+    <input type="submit" value="Create Recipe">
+</form>
+    <br>
+    <br>
+<form method="POST" action="/recipes/deleteRecipe/{{recipes.RecipeId}}">
+       <input type="submit" value="Delete Post (by User)">
+</form>
+
+<form method="POST" action="/posts/admin/deletePost/{{recipes.RecipeId}}">
+       <input type="submit" value="Delete Post (by Admin)">
+</form>
+
+
+
+
+<br>
+<a class="aB" href="/users/profile">Back</a>
+<a class="aB" href="/users/logout">Logout</a>

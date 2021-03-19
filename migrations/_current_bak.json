@@ -61,6 +61,17 @@
                     "field": "RecipeId",
                     "seqType": "Sequelize.INTEGER"
                 },
+                "UserId": {
+                    "allowNull": false,
+                    "field": "UserId",
+                    "references": {
+                        "model": "users",
+                        "key": "UserId"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
                 "Title": {
                     "allowNull": false,
                     "field": "Title",
@@ -152,7 +163,7 @@
                     "allowNull": false,
                     "unique": true,
                     "field": "Email",
-                    "seqType": "Sequelize.STRING(50)"
+                    "seqType": "Sequelize.STRING(60)"
                 },
                 "Username": {
                     "allowNull": false,
@@ -197,5 +208,5 @@
             "indexes": []
         }
     },
-    "revision": 7
+    "revision": 22
 }

@@ -1,0 +1,33 @@
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap" rel="stylesheet">
+
+<h1 class="welcome">"Resipes From the Heart"</h1>
+<!--<h1 class="welcome">Welcome! Ready to Post? </h1>-->
+<h1>Please sign up:</h1>
+
+<form id="signup" name="signup" method="POST" action="/users/signup">
+    <div class="inputBackground">
+        <label for="name">First Name: </label>
+        <input type="text" name="FirstName" required>
+    </div>
+    <div class="inputBackground">
+        <label for="name">Last Name: </label>
+        <input type="text" name="LastName" required>
+    </div>
+    <div class="inputBackground">
+        <label for="name">Username: </label>
+        <input type="text" name="Username" required>
+    </div>
+    <div class="inputBackground">
+        <label for="name">Email: </label>
+        <input class="email" type="text" name="Email" required>
+    </div>
+    <div class="inputBackground">
+        <label for="name">Password: </label>
+        <input type="password" name="Password" required>
+    </div>
+    <div class="inputBackground">
+        <button type="submit">Submit</button>
+    </div>
+</form>
+<br>
+<a class="aB" href="/users/">Already a User? Login!</a>

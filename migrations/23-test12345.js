@@ -5,43 +5,25 @@ var Sequelize = require('sequelize');
 /**
  * Actions summary:
  *
- * createTable "user_recs", deps: [users, recipes]
+ * changeColumn "UserId" on table "users"
+ * changeColumn "UserId" on table "users"
+ * changeColumn "UserId" on table "users"
  *
  **/
 
 var info = {
-    "revision": 8,
-    "name": "add_linking",
-    "created": "2021-03-12T20:11:02.787Z",
+    "revision": 23,
+    "name": "test12345",
+    "created": "2021-03-19T07:54:45.363Z",
     "comment": ""
 };
 
 var migrationCommands = [{
-    fn: "createTable",
-    params: [
-        "user_recs",
-        {
-            "Id": {
-                "type": Sequelize.INTEGER,
-                "field": "Id",
-                "primaryKey": true,
-                "autoIncrement": true,
-                "allowNull": false
-            },
-            "UserId": {
-                "type": Sequelize.INTEGER,
-                "onUpdate": "CASCADE",
-                "onDelete": "CASCADE",
-                "references": {
-                    "model": "users",
-                    "key": "UserId"
-                },
-                "unique": "user_recs_RecipeId_UserId_unique",
-                "field": "UserId",
-                "primaryKey": true,
-                "allowNull": false
-            },
-            "RecipeId": {
+        fn: "changeColumn",
+        params: [
+            "users",
+            "UserId",
+            {
                 "type": Sequelize.INTEGER,
                 "onUpdate": "CASCADE",
                 "onDelete": "CASCADE",
@@ -49,25 +31,54 @@ var migrationCommands = [{
                     "model": "recipes",
                     "key": "RecipeId"
                 },
-                "unique": "user_recs_RecipeId_UserId_unique",
-                "field": "RecipeId",
+                "field": "UserId",
                 "primaryKey": true,
-                "allowNull": false
-            },
-            "createdAt": {
-                "type": Sequelize.DATE,
-                "field": "createdAt",
-                "allowNull": false
-            },
-            "updatedAt": {
-                "type": Sequelize.DATE,
-                "field": "updatedAt",
+                "autoIncrement": true,
                 "allowNull": false
             }
-        },
-        {}
-    ]
-}];
+        ]
+    },
+    {
+        fn: "changeColumn",
+        params: [
+            "users",
+            "UserId",
+            {
+                "type": Sequelize.INTEGER,
+                "onUpdate": "CASCADE",
+                "onDelete": "CASCADE",
+                "references": {
+                    "model": "recipes",
+                    "key": "RecipeId"
+                },
+                "field": "UserId",
+                "primaryKey": true,
+                "autoIncrement": true,
+                "allowNull": false
+            }
+        ]
+    },
+    {
+        fn: "changeColumn",
+        params: [
+            "users",
+            "UserId",
+            {
+                "type": Sequelize.INTEGER,
+                "onUpdate": "CASCADE",
+                "onDelete": "CASCADE",
+                "references": {
+                    "model": "recipes",
+                    "key": "RecipeId"
+                },
+                "field": "UserId",
+                "primaryKey": true,
+                "autoIncrement": true,
+                "allowNull": false
+            }
+        ]
+    }
+];
 
 module.exports = {
     pos: 0,

@@ -61,6 +61,17 @@
                     "field": "RecipeId",
                     "seqType": "Sequelize.INTEGER"
                 },
+                "UserId": {
+                    "allowNull": false,
+                    "field": "UserId",
+                    "references": {
+                        "model": "users",
+                        "key": "UserId"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
                 "Title": {
                     "allowNull": false,
                     "field": "Title",
@@ -136,6 +147,12 @@
                     "autoIncrement": true,
                     "primaryKey": true,
                     "field": "UserId",
+                    "references": {
+                        "model": "recipes",
+                        "key": "RecipeId"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
                     "seqType": "Sequelize.INTEGER"
                 },
                 "FirstName": {
@@ -152,7 +169,7 @@
                     "allowNull": false,
                     "unique": true,
                     "field": "Email",
-                    "seqType": "Sequelize.STRING(50)"
+                    "seqType": "Sequelize.STRING(60)"
                 },
                 "Username": {
                     "allowNull": false,
@@ -195,56 +212,7 @@
                 }
             },
             "indexes": []
-        },
-        "user_recs": {
-            "tableName": "user_recs",
-            "schema": {
-                "Id": {
-                    "allowNull": false,
-                    "autoIncrement": true,
-                    "primaryKey": true,
-                    "field": "Id",
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "UserId": {
-                    "allowNull": false,
-                    "primaryKey": true,
-                    "field": "UserId",
-                    "unique": "user_recs_RecipeId_UserId_unique",
-                    "references": {
-                        "model": "users",
-                        "key": "UserId"
-                    },
-                    "onDelete": "CASCADE",
-                    "onUpdate": "CASCADE",
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "RecipeId": {
-                    "allowNull": false,
-                    "primaryKey": true,
-                    "field": "RecipeId",
-                    "unique": "user_recs_RecipeId_UserId_unique",
-                    "references": {
-                        "model": "recipes",
-                        "key": "RecipeId"
-                    },
-                    "onDelete": "CASCADE",
-                    "onUpdate": "CASCADE",
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "createdAt": {
-                    "allowNull": false,
-                    "field": "createdAt",
-                    "seqType": "Sequelize.DATE"
-                },
-                "updatedAt": {
-                    "allowNull": false,
-                    "field": "updatedAt",
-                    "seqType": "Sequelize.DATE"
-                }
-            },
-            "indexes": []
         }
     },
-    "revision": 8
+    "revision": 23
 }

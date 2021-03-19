@@ -11,12 +11,17 @@ router.get('/', function(req, res, next) {
 */
 //users
 
+router.get('/', function (req, res, next) {
+  res.render('login', { title: 'Users' });
+});
+
 router.get('/profile', function(req, res, next) {
   models.users
     .findAll({include: [{ model: models.recipes }]})
     .then(usersFound => {
-      res.setHeader('Content-Type', 'application/json');
-      res.send(JSON.stringify(usersFound));
+      res.render('profile', { title: 'profile' });
+      //res.setHeader('Content-Type', 'application/json');
+      //res.send(JSON.stringify(usersFound));
     });
 });
 
@@ -26,9 +31,14 @@ router.get('/profile/:id', function(req, res, next) {
       include: [{ model: models.recipes }]
     })
     .then(usersFound => {
-      res.setHeader('Content-Type', 'application/json');
-      res.send(JSON.stringify(usersFound));
+      res.render('profile', { title: 'profile' });
+      //res.setHeader('Content-Type', 'application/json');
+      //res.send(JSON.stringify(usersFound));
     })
+});
+
+router.get('/signup', function (req, res, next) {
+  res.render('signup');
 });
 
 router.post('/signup', function (req, res, next) {
@@ -53,7 +63,7 @@ router.post('/signup', function (req, res, next) {
 router.put('/profile/:id', function (req, res, next) {
   let UserId = parseInt(req.params.id);
   models.users
-    .update(req.body, { where: { Userid: UserId } })
+    .update(req.body, { where: { UserId: UserId } })
     .then(result => res.redirect('/users/profile/' + UserId))
     .catch(err => {
       res.status(400);
@@ -65,7 +75,7 @@ router.delete('/profile/:id', function (req, res, next) {
   let UserId = parseInt(req.params.id);
   models.users
     .destroy({
-      where: { Userid: UserId }
+      where: { UserId: UserId }
     })
     .then(result => res.redirect('/users/profile'))
     .catch(err => { 
