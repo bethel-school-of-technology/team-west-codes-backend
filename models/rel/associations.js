@@ -4,8 +4,8 @@ module.exports = function(models) {
             //through: models.users,
             foreignKey: 'UserId'
         });
-    models.recipes.hasOne(models.users,
+    models.recipes.belongsTo(models.users,
         {
             foreignKey: 'UserId'
-        });
+        });/**/
 }

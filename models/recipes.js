@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         references: {
           model: 'users',
           key: 'UserId'}
-      },
+      },/**/
       Title: {
         type: DataTypes.STRING(100),
         allowNull: false

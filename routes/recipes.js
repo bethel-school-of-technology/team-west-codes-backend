@@ -37,7 +37,7 @@ router.post('/createRecipe', function (req, res, next) {
       Title: req.body.Title, 
       Ingredients: req.body.Ingredients,
       Steps:  req.body.Steps,
-      //UserId: req.body.UserId
+      UserId: req.body.UserId
     }
   })
   .spread(function(result, created) {

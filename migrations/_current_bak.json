@@ -61,14 +61,14 @@
                     "field": "RecipeId",
                     "seqType": "Sequelize.INTEGER"
                 },
-                "UserId": {
+                "UseId": {
                     "allowNull": false,
-                    "field": "UserId",
                     "references": {
                         "model": "users",
-                        "key": "UserId"
+                        "key": "UseId"
                     },
-                    "onDelete": "CASCADE",
+                    "field": "UseId",
+                    "onDelete": "NO ACTION",
                     "onUpdate": "CASCADE",
                     "seqType": "Sequelize.INTEGER"
                 },
@@ -135,6 +135,17 @@
                     "allowNull": false,
                     "field": "updatedAt",
                     "seqType": "Sequelize.DATE"
+                },
+                "userUseId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "users",
+                        "key": "UseId"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "userUseId",
+                    "seqType": "Sequelize.INTEGER"
                 }
             },
             "indexes": []
@@ -142,11 +153,11 @@
         "users": {
             "tableName": "users",
             "schema": {
-                "UserId": {
+                "UseId": {
                     "allowNull": false,
                     "autoIncrement": true,
                     "primaryKey": true,
-                    "field": "UserId",
+                    "field": "UseId",
                     "seqType": "Sequelize.INTEGER"
                 },
                 "FirstName": {
@@ -163,7 +174,7 @@
                     "allowNull": false,
                     "unique": true,
                     "field": "Email",
-                    "seqType": "Sequelize.STRING(60)"
+                    "seqType": "Sequelize.STRING(50)"
                 },
                 "Username": {
                     "allowNull": false,
@@ -208,5 +219,5 @@
             "indexes": []
         }
     },
-    "revision": 22
+    "revision": 32
 }
