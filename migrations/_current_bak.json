@@ -10,16 +10,16 @@
                     "field": "FavId",
                     "seqType": "Sequelize.INTEGER"
                 },
-                "Recip_ID": {
+                "RecipeId": {
                     "allowNull": false,
                     "foreignKey": true,
-                    "field": "Recip_ID",
+                    "field": "RecipeId",
                     "seqType": "Sequelize.INTEGER"
                 },
-                "User_ID": {
+                "UserId": {
                     "allowNull": false,
                     "foreignKey": true,
-                    "field": "User_ID",
+                    "field": "UserId",
                     "seqType": "Sequelize.INTEGER"
                 },
                 "Tried": {
@@ -64,11 +64,11 @@
                 "UserId": {
                     "allowNull": false,
                     "references": {
-                        "model": "users",
-                        "key": "UserId"
+                        "model": "favorite",
+                        "key": "User_Id"
                     },
                     "field": "UserId",
-                    "onDelete": "NO ACTION",
+                    "onDelete": "CASCADE",
                     "onUpdate": "CASCADE",
                     "seqType": "Sequelize.INTEGER"
                 },
@@ -208,5 +208,5 @@
             "indexes": []
         }
     },
-    "revision": 33
+    "revision": 34
 }

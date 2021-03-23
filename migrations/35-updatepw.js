@@ -5,47 +5,29 @@ var Sequelize = require('sequelize');
 /**
  * Actions summary:
  *
- * removeColumn "userUseId" from table "recipes"
- * removeColumn "UseId" from table "recipes"
- * removeColumn "UseId" from table "users"
- * addColumn "UserId" to table "users"
- * addColumn "userUserId" to table "recipes"
- * addColumn "UserId" to table "recipes"
+ * changeColumn "Password" on table "users"
  *
  **/
 
 var info = {
-    "revision": 33,
-    "name": "test12345678900",
-    "created": "2021-03-19T21:44:42.985Z",
+    "revision": 35,
+    "name": "updatepw",
+    "created": "2021-03-23T06:54:14.116Z",
     "comment": ""
 };
 
 var migrationCommands = [
-    
     {
-        fn: "removeColumn",
-        params: ["recipes", "userUserId"]
-    },
-
-    /*{
-        fn: "addColumn",
+        fn: "changeColumn",
         params: [
-            "recipes",
-            "UserId",
+            "users",
+            "Password",
             {
-                "type": Sequelize.INTEGER,
-                "onUpdate": "CASCADE",
-                "onDelete": "NO ACTION",
-                "field": "UserId",
-                "references": {
-                    "model": "users",
-                    "key": "UserId"
-                },
-                "allowNull": false
+                "type": Sequelize.STRING(100),
+                "field": "Password"
             }
         ]
-    }*/
+    }
 ];
 
 module.exports = {

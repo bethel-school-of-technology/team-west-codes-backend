@@ -26,7 +26,7 @@ var authService = {
         }
     },
     hashPassword: function (plainTextPassword) {
-        let salt = bcrypt.genSaltSync(20);                      // "sprinkle in" random chars into password
+        let salt = bcrypt.genSaltSync(10);                      // "sprinkle in" random chars into password
         let hash = bcrypt.hashSync(plainTextPassword, salt);
         return hash;
     },

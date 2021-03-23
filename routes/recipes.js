@@ -73,7 +73,7 @@ router.post("/editRecipe/:id", function (req, res, next) {
 });
 
 // DELETE A POST BY ID (admin only)
-router.post("/admin/deleteRecipe/:id", function (req, res, next) {
+/*router.post("/admin/deleteRecipe/:id", function (req, res, next) {
   let RecipeID = parseInt(req.params.id);
   let token = req.cookies.jwt;
   if (token) {
@@ -88,10 +88,26 @@ router.post("/admin/deleteRecipe/:id", function (req, res, next) {
               }
           });
   }
+});*/
+
+router.delete("/admin/deleteRecipe/:id", function (req, res, next) {
+  let RecipeID = parseInt(req.params.id);
+  let token = req.cookies.jwt;
+  if (token) {
+      authService.verifyUser(token)
+          .then(user => {
+              if (user.Admin) {
+                  models.recipe
+                      .then(user => res.redirect('/users/admin'));
+              } else {
+                  res.send("You are not logged in as Admin. Unable to delete recipe.");
+              }
+          });
+  }
 });
 
 // DELETE A POST BY ID (user)
-router.post("/deleteRecipe/:id", function (req, res, next) {
+/*router.post("/deleteRecipe/:id", function (req, res, next) {
   let RecipeID = parseInt(req.params.id);
   let token = req.cookies.jwt;
   if (token) {
@@ -100,6 +116,22 @@ router.post("/deleteRecipe/:id", function (req, res, next) {
               if (user) {
                   models.recipe
                       .update({ Deleted: true }, { where: { RecipeId: RecipeID } })
+                      .then(user => res.redirect('/users/profile'));
+              } else {
+                  res.send("Unable to Delete");
+              }
+          });
+  }
+});*/
+
+router.post("/deleteRecipe/:id", function (req, res, next) {
+  let RecipeID = parseInt(req.params.id);
+  let token = req.cookies.jwt;
+  if (token) {
+      authService.verifyUser(token)
+          .then(user => {
+              if (user) {
+                  models.recipe
                       .then(user => res.redirect('/users/profile'));
               } else {
                   res.send("Unable to Delete");

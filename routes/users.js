@@ -84,12 +84,11 @@ router.get('/profile', function (req, res, next) {
               Username: user.Username
             },
             include: [{
-              model: models.recipes,
-              where: {Deleted: false}
+              model: models.recipes
             }]
-          }).then(userrecipesFound => {
-            console.log(userrecipesFound);
-            res.render('profile', { userData: userrecipesFound }
+          }).then(userRecipesFound => {
+            console.log(userRecipesFound);
+            res.render('profile', { userData: userRecipesFound }
             );
           })
         } else {
