@@ -61,13 +61,13 @@
                     "field": "RecipeId",
                     "seqType": "Sequelize.INTEGER"
                 },
-                "UseId": {
+                "UserId": {
                     "allowNull": false,
                     "references": {
                         "model": "users",
-                        "key": "UseId"
+                        "key": "UserId"
                     },
-                    "field": "UseId",
+                    "field": "UserId",
                     "onDelete": "NO ACTION",
                     "onUpdate": "CASCADE",
                     "seqType": "Sequelize.INTEGER"
@@ -135,17 +135,6 @@
                     "allowNull": false,
                     "field": "updatedAt",
                     "seqType": "Sequelize.DATE"
-                },
-                "userUseId": {
-                    "allowNull": true,
-                    "references": {
-                        "model": "users",
-                        "key": "UseId"
-                    },
-                    "onDelete": "SET NULL",
-                    "onUpdate": "CASCADE",
-                    "field": "userUseId",
-                    "seqType": "Sequelize.INTEGER"
                 }
             },
             "indexes": []
@@ -153,11 +142,11 @@
         "users": {
             "tableName": "users",
             "schema": {
-                "UseId": {
+                "UserId": {
                     "allowNull": false,
                     "autoIncrement": true,
                     "primaryKey": true,
-                    "field": "UseId",
+                    "field": "UserId",
                     "seqType": "Sequelize.INTEGER"
                 },
                 "FirstName": {
@@ -219,5 +208,5 @@
             "indexes": []
         }
     },
-    "revision": 32
+    "revision": 33
 }
