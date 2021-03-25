@@ -12,13 +12,19 @@
                 },
                 "RecipeId": {
                     "allowNull": false,
-                    "foreignKey": true,
+                    "references": {
+                        "model": "recipes",
+                        "key": "RecipeId"
+                    },
                     "field": "RecipeId",
                     "seqType": "Sequelize.INTEGER"
                 },
                 "UserId": {
                     "allowNull": false,
-                    "foreignKey": true,
+                    "references": {
+                        "model": "users",
+                        "key": "UserId"
+                    },
                     "field": "UserId",
                     "seqType": "Sequelize.INTEGER"
                 },
@@ -64,8 +70,8 @@
                 "UserId": {
                     "allowNull": false,
                     "references": {
-                        "model": "favorite",
-                        "key": "User_Id"
+                        "model": "users",
+                        "key": "UserId"
                     },
                     "field": "UserId",
                     "onDelete": "CASCADE",
@@ -181,7 +187,7 @@
                 },
                 "Password": {
                     "field": "Password",
-                    "seqType": "Sequelize.STRING(50)"
+                    "seqType": "Sequelize.STRING(100)"
                 },
                 "createdAt": {
                     "field": "createdAt",
@@ -208,5 +214,5 @@
             "indexes": []
         }
     },
-    "revision": 34
+    "revision": 35
 }

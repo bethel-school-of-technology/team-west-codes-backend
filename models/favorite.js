@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       RecipeId: {
         allowNull: false,
-        //foreignKey: true,
+        foreignKey: true,
         type: DataTypes.INTEGER,
         references: {
           model: 'recipes',
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       UserId: {
         allowNull: false,
-        //foreignKey: true,
+        foreignKey: true,
         type: DataTypes.INTEGER,
         references: {
           model: 'users',

@@ -12,6 +12,7 @@
                 },
                 "RecipeId": {
                     "allowNull": false,
+                    "foreignKey": true,
                     "references": {
                         "model": "recipes",
                         "key": "RecipeId"
@@ -21,6 +22,7 @@
                 },
                 "UserId": {
                     "allowNull": false,
+                    "foreignKey": true,
                     "references": {
                         "model": "users",
                         "key": "UserId"
@@ -53,6 +55,28 @@
                     "allowNull": false,
                     "field": "updatedAt",
                     "seqType": "Sequelize.DATE"
+                },
+                "userUserId": {
+                    "unique": "favorites_recipeRecipeId_userUserId_unique",
+                    "references": {
+                        "model": "users",
+                        "key": "UserId"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "userUserId",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "recipeRecipeId": {
+                    "unique": "favorites_recipeRecipeId_userUserId_unique",
+                    "references": {
+                        "model": "recipes",
+                        "key": "RecipeId"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "recipeRecipeId",
+                    "seqType": "Sequelize.INTEGER"
                 }
             },
             "indexes": []
@@ -214,5 +238,5 @@
             "indexes": []
         }
     },
-    "revision": 35
+    "revision": 36
 }
