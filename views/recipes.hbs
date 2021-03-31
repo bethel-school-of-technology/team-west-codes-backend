@@ -2,20 +2,20 @@
 
 <h2>{{FirstName}} {{LastName}}</h2>
 
-<h1 class="welcome">Add A New Post:</h1>
+<h1 class="welcome">Add A New Recipe:</h1>
 
-<form id="post" name="createPost" method="POST" action="/posts/createPost">
+<form id="post" name="createRecipe" method="POST" action="/recipes/createRecipe">
     {{!-- <div>
         <label for="date">Post Date: </label>
         <input type="date" name="postDate">
     </div> --}}
     <div>
         <label for="name">Title: </label>
-        <input type="text" name="postTitle" required>
+        <input type="text" name="Title" required>
     </div>
     <div>
-        <label for="name">Post: </label>
-        <input type="text" name="postBody" required>
+        <label for="name">Steps: </label>
+        <input type="text" name="Steps" required>
     </div>
 
     <div>

@@ -3,16 +3,14 @@
 <h3 class="welcome">{{recipes.Title}}</h3>
 <h3>Recipe Id: {{recipes.RecipeId}}</h3>
 
-<form method="POST" action="/recipes/createRecipe/{{recipes.RecipeId}}">
+<form method="POST" action="/recipes/createRecipe/{{favorites.RecipeId}}">
 <h2 class="welcome2">Add user ID:</h2>
-    <input class="title" name="UserId" type="number" value="{{recipes.UserId}}">
+    <input class="title" name="UserId" type="number" value="{{favorites.UserId}}">
 <h2 class="welcome2">Add Recipe Title:</h2>
-    <input class="title" name="Title" type="text" value="{{recipes.Title}}">
+    <input class="title" name="Title" type="text" value="{{favorites.Tried}}">
 <h2 class="welcome2">Add Recipe Steps:</h2>
-    <input class="body" name="Steps" type="text" value="{{recipes.Steps}}">
-<h2 class="welcome2">Add Recipe Ingredients:</h2>
-    <input class="title" name="Ingredients" type="text" value="{{recipes.Ingredients}}">
-    <br>
+    <input class="body" name="Steps" type="text" value="{{favorites.Loved_it}}">
+
     <br>
     <input type="submit" value="Create Recipe">
 </form>
@@ -25,7 +23,14 @@
 <form method="POST" action="/recipes/admin/deleteRecipe/{{recipes.RecipeId}}">
        <input type="submit" value="Delete Recipe (by Admin)">
 </form>
-
+<div>
+    <h2 class="welcome2">Add user ID:</h2>
+    <input class="title" name="UserId" type="number" value="{{favorites.UserId}}">
+<h2 class="welcome2">Add Recipe Title:</h2>
+    <input class="title" name="Tried" type="text" value="{{favorites.Tried}}">
+<h2 class="welcome2">Add Recipe Steps:</h2>
+    <input class="body" name="Loved_it" type="text" value="{{favorites.Loved_it}}">
+</div>
 
 
 

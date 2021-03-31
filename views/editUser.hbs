@@ -11,12 +11,12 @@
 <div class="inputBackground">
     <h2>User's Post List:</h2>
     <ul>
-        {{#each userData.posts}}
+        {{#each userData.recipes}}
         <li>
-            <h4>{{PostTitle}}</h4>
+            <h4>{{Title}}</h4>
             <p>Deleted Status: {{Deleted}}</p>
-            <form method="POST" action="/posts/admin/deletePost/{{PostId}}">
-            <input type="submit" value="Delete Post">
+            <form method="POST" action="/recipes/admin/deleteRecipe/{{PostId}}">
+            <input type="submit" value="Delete Recipe">
             </form>
         </li>
         {{/each}}

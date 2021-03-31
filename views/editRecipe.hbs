@@ -2,9 +2,6 @@
 
 <h3 class="welcome">{{recipes.Title}}</h3>
 <h3>Recipe Id: {{recipes.RecipeId}}</h3>
-{{!-- <h3>Post Created: {{post.PostDate}}</h3> --}}
-
-
 
 <form method="POST" action="/recipes/createRecipe/{{recipes.RecipeId}}">
 <h2 class="welcome2">Add user ID:</h2>
@@ -22,11 +19,11 @@
     <br>
     <br>
 <form method="POST" action="/recipes/deleteRecipe/{{recipes.RecipeId}}">
-       <input type="submit" value="Delete Post (by User)">
+       <input type="submit" value="Delete Recipe (by User)">
 </form>
 
-<form method="POST" action="/posts/admin/deletePost/{{recipes.RecipeId}}">
-       <input type="submit" value="Delete Post (by Admin)">
+<form method="POST" action="/recipes/admin/deleteRecipe/{{recipes.RecipeId}}">
+       <input type="submit" value="Delete Recipe (by Admin)">
 </form>
 
 

@@ -6,27 +6,27 @@ var authService = {
     signUser: function (user) {
         const token = jwt.sign(
             {
-                Username: user.Username,                        // payload information
+                Username: user.Username,                        
                 UserId: user.UserId
             },
             'secretkey',
             {
-                expiresIn: '1h'                                 // token expires
+                expiresIn: '1h'                                 
             }
         );
         return token;
-    },                                                          // NEED TO ADD THIS COMMA
-    verifyUser: function (token) {                              // receive JWT token as parameter
+    },                                                          
+    verifyUser: function (token) {                              
         try {
-            let decoded = jwt.verify(token, 'secretkey');       // Decrypt token using same key used to encrypt
-            return models.users.findByPk(decoded.UserId);       // Return result of database query as promise
+            let decoded = jwt.verify(token, 'secretkey');       
+            return models.users.findByPk(decoded.UserId);       
         } catch (err) {
             console.log(err);
             return null;
         }
     },
     hashPassword: function (plainTextPassword) {
-        let salt = bcrypt.genSaltSync(10);                      // "sprinkle in" random chars into password
+        let salt = bcrypt.genSaltSync(10);                      
         let hash = bcrypt.hashSync(plainTextPassword, salt);
         return hash;
     },
