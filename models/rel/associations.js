@@ -1,22 +1,11 @@
 module.exports = function(models) {
-    models.users.belongsToMany(models.recipes, 
-        { 
-            through: models.user_rec,
-            foreignKey: 'UserId'
-        });
-    models.recipes.belongsToMany(models.users,
-        {
-            through: models.user_rec,
-            foreignKey: 'RecipeId'
-        });
-    /*models.users.belongsToMany(models.recipes, 
-        { 
-            through: models.favorite,
-            foreignKey: 'UserId'
-        });
-    models.recipes.belongsToMany(models.users,
-        {
-            through: models.favorite,
-            foreignKey: 'RecipeId'
-        });*/
+    //users to recipes
+    models.users.hasMany(models.recipes, { foreignKey: 'UserId' });
+    models.recipes.belongsTo(models.users, { foreignKey: 'UserId' });
+    //users to fav
+    models.users.hasMany(models.favorites, { foreignKey: 'UserId' });
+    models.favorites.belongsTo(models.users, { foreignKey: 'UserId' });
+    //recipe to fav
+    models.recipes.hasMany(models.favorites, { foreignKey: 'RecipeId' });
+    models.favorites.belongsTo(models.recipes, { foreignKey: 'RecipeId' });
 }

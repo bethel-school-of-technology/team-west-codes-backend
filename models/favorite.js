@@ -9,15 +9,23 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      Recip_ID: {
+      RecipeId: {
         allowNull: false,
         foreignKey: true,
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'recipes',
+          key: 'RecipeId',
+        }
       },
-      User_ID: {
+      UserId: {
         allowNull: false,
         foreignKey: true,
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'users',
+          key: 'UserId',
+        }
       },
       Tried: {
         allowNull: true,

@@ -1,0 +1,28 @@
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap" rel="stylesheet">
+
+<h2>{{FirstName}} {{LastName}}</h2>
+
+<h1 class="welcome">Add A New Recipe:</h1>
+
+<form id="post" name="createRecipe" method="POST" action="/recipes/createRecipe">
+    {{!-- <div>
+        <label for="date">Post Date: </label>
+        <input type="date" name="postDate">
+    </div> --}}
+    <div>
+        <label for="name">Title: </label>
+        <input type="text" name="Title" required>
+    </div>
+    <div>
+        <label for="name">Steps: </label>
+        <input type="text" name="Steps" required>
+    </div>
+
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+
+<br>
+<a class="aB" href="/users/profile">Back</a>
+<a class="aB" href="/users/logout">Logout</a>
