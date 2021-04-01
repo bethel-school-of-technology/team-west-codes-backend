@@ -1,0 +1,39 @@
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap" rel="stylesheet">
+
+<h3 class="welcome">{{recipes.Title}}</h3>
+<h3>Recipe Id: {{recipes.RecipeId}}</h3>
+
+<form method="POST" action="/recipes/createRecipe/{{favorites.RecipeId}}">
+<h2 class="welcome2">Add user ID:</h2>
+    <input class="title" name="UserId" type="number" value="{{favorites.UserId}}">
+<h2 class="welcome2">Add Recipe Title:</h2>
+    <input class="title" name="Title" type="text" value="{{favorites.Tried}}">
+<h2 class="welcome2">Add Recipe Steps:</h2>
+    <input class="body" name="Steps" type="text" value="{{favorites.Loved_it}}">
+
+    <br>
+    <input type="submit" value="Create Recipe">
+</form>
+    <br>
+    <br>
+<form method="POST" action="/recipes/deleteRecipe/{{recipes.RecipeId}}">
+       <input type="submit" value="Delete Recipe (by User)">
+</form>
+
+<form method="POST" action="/recipes/admin/deleteRecipe/{{recipes.RecipeId}}">
+       <input type="submit" value="Delete Recipe (by Admin)">
+</form>
+<div>
+    <h2 class="welcome2">Add user ID:</h2>
+    <input class="title" name="UserId" type="number" value="{{favorites.UserId}}">
+<h2 class="welcome2">Add Recipe Title:</h2>
+    <input class="title" name="Tried" type="text" value="{{favorites.Tried}}">
+<h2 class="welcome2">Add Recipe Steps:</h2>
+    <input class="body" name="Loved_it" type="text" value="{{favorites.Loved_it}}">
+</div>
+
+
+
+<br>
+<a class="aB" href="/users/profile">Back</a>
+<a class="aB" href="/users/logout">Logout</a>

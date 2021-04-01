@@ -6,6 +6,37 @@ var passport = require('../services/passport');
 var authService = require('../services/auth');
 
 
+router.post('/createFavorite', function (req, res, next) {
+    let token = req.cookies.jwt;
+    //let RecipeId = parseInt(req.params.RecipeId);
+    //let UserId = parseInt(req.params.UserId);
+    models.users
+    authService.verifyUser(token).then(user => {
+        if (user) {
+            models.favorite
+                .findOrCreate({
+                    where: {
+                        FavId: user.UserId
+                    },
+                    defaults: {
+                        UserId: req.body.UserId,
+                        RecipeId: req.body.RecipeId,
+                        Tried: req.body.Tried,
+                        Loved_it: req.body.Loved_it
+                    }
+                })
+                .spread(function (result, created) {
+                    if (created) {
+                        res.redirect('/users/profile');
+                    } else {
+                        res.send('Recipe did not post please try again.');
+                    }
+                })
+        }
+    });
+  });
+
+  /*
 router.post('/createRecipe', function (req, res, next) {
   let token = req.cookies.jwt;
   models.users
@@ -29,27 +60,33 @@ router.post('/createRecipe', function (req, res, next) {
               })
       }
   });
-});
+});*/
 
 
-router.get("/editRecipe/:id", function (req, res, next) {
-  let RecipeId = parseInt(req.params.id);
+router.get("/editFavorite/:id", function (req, res, next) {
+  let FavId = parseInt(req.params.id);
   let token = req.cookies.jwt;
   models.users
   if (token) {
       authService.verifyUser(token).then(user => {
           if (user) {
-              models.recipes
-                  .findByPk(RecipeId)
-                  .then(recipe => res.render('editRecipe', { recipe }));
+              models.favorites
+                  .findByPk(FavId)
+                  .then(favorites => res.render('editFavorite', { 
+                      FavId: favorites.FavId,
+                      RecipieId: favorites.RecipeId,
+                      UserId: favorites.UserId,
+                      TriedIt: favorites.Tried,
+                      LovedIt: favorites.Loved_it
+                    }));
           } else {
-              res.send("Sorry, there was a problem editing this post.");
+              res.send("Sorry, there was a problem editing this favorite.");
           }
       });
   }
 });
 
-
+/*
 router.post("/editRecipe/:id", function (req, res, next) {
   let RecipeID = parseInt(req.params.id);
   let token = req.cookies.jwt;
@@ -102,35 +139,7 @@ router.post("/deleteRecipe/:id", function (req, res, next) {
   }
 });
 
-router.post('/createFavorite', function (req, res, next) {
-  let token = req.cookies.jwt;
-  //let RecipeId = parseInt(req.params.RecipeId);
-  //let UserId = parseInt(req.params.UserId);
-  models.users
-  authService.verifyUser(token).then(user => {
-      if (user) {
-          models.favorite
-              .findOrCreate({
-                  where: {
-                      FavId: user.UserId
-                  },
-                  defaults: {
-                      UserId: req.body.UserId,
-                      RecipeId: req.body.RecipeId,
-                      Tried: req.body.Tried,
-                      Loved_it: req.body.Loved_it
-                  }
-              })
-              .spread(function (result, created) {
-                  if (created) {
-                      res.redirect('/users/profile');
-                  } else {
-                      res.send('Recipe did not post please try again.');
-                  }
-              })
-      }
-  });
-});
+
 
 
 /*router.post('/createRecipe', function (req, res, next) {
@@ -158,24 +167,24 @@ router.post('/createFavorite', function (req, res, next) {
   });
 });*/
 
-
-router.get("/editRecipe/:id", function (req, res, next) {
-  let RecipeId = parseInt(req.params.id);
+/*
+router.get("/editFavorite/:id", function (req, res, next) {
+  let FavId = parseInt(req.params.id);
   let token = req.cookies.jwt;
   models.users
   if (token) {
       authService.verifyUser(token).then(user => {
-          if (user) {
-              models.recipes
-                  .findByPk(RecipeId)
-                  .then(recipe => res.render('editRecipe', { recipe }));
+          if (favorite) {
+              models.favorites
+                  .findByPk(FavId)
+                  .then(favorite => res.render('editRecipe', { favorite }));
           } else {
-              res.send("Sorry, there was a problem editing this post.");
+              res.send("Sorry, there was a problem editing this favorite.");
           }
       });
   }
 });
-
+*/
 
 router.post("/editRecipe/:id", function (req, res, next) {
   let RecipeID = parseInt(req.params.id);

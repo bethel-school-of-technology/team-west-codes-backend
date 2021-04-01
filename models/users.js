@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false
       },
-      Password: DataTypes.STRING(50),
+      Password: DataTypes.STRING(100),
       createdAt: DataTypes.DATE,
       Avitar: DataTypes.BLOB,
       Deleted: {
