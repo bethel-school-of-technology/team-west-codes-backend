@@ -34,6 +34,55 @@ router.post('/createFavorite', function (req, res, next) {
     });
   });
 
+  router.get('/allFavorite/:id', function (req, res, next) {
+    let token = req.cookies.jwt;
+    if (token) {
+      authService.verifyUser(token)
+        .then(user => {
+          
+          if (user) {
+            models.users.findOne({
+              where: {
+                UserId: user.UserId
+              },
+              include: [{
+                model: models.favorites
+              }]
+            }).then(userfavoritesFound => {
+              console.log(userfavoritesFound);
+              res.send(JSON.stringify({ userData: userfavoritesFound }));
+              //res.render('profile', { userData: userRecipesFound });
+            })
+          } else {
+            res.status(401);
+            res.send('Must be logged in');
+          }
+        });
+    }
+  });
+  /*
+  router.get("/allFavorite/:id", function (req, res, next) {
+    let UserId = parseInt(req.params.id);
+    let token = req.cookies.jwt;
+    models.users
+    if (token) {
+        authService.verifyUser(token).then(user => {
+            if (user) {
+                models.users.findOne({
+                    where: { UserId: user.UserId},
+                  include: [( models.favorites
+                    .findAll({ where: {UserId: req.body.UserId}}) )]  
+                })
+                .then( userfavoritesFound => {
+                    console.log(userfavoritesFound);
+                    res.send(JSON.stringify({ userData: userfavoritesFound }))});
+            } else {
+                res.send("Sorry, there was a problem editing this favorite.");
+            }
+        });
+    }
+  });
+*/
   router.get("/editFavorite/:id", function (req, res, next) {
     let FavId = parseInt(req.params.id);
     let token = req.cookies.jwt;

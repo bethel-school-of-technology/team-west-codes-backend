@@ -35,7 +35,7 @@ router.post('/signup', function (req, res, next) {
     })
     .spread(function (result, created) {
       if (created) {
-        res.redirect('login');
+        res.send(JSON.stringify((results)));
       } else {
         res.send('This username already exists. Choose a different username and try again.');
       }
