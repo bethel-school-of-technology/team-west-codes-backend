@@ -22,7 +22,7 @@ router.post('/createRecipe', function (req, res, next) {
               })
               .spread(function (result, created) {
                   if (created) {
-                      res.redirect('/users/profile');
+                      res.send(JSON.stringify({ recipeData: result }));
                   } else {
                       res.send('Recipe did not post please try again.');
                   }
@@ -41,7 +41,9 @@ router.get("/editRecipe/:id", function (req, res, next) {
           if (user) {
               models.recipes
                   .findByPk(RecipeId)
-                  .then(recipe => res.render('editRecipe', { recipe }));
+                  .then(recipe => { 
+                    res.send(JSON.stringify({ recipe }));
+                  })
           } else {
               res.send("Sorry, there was a problem editing this post.");
           }
@@ -54,13 +56,15 @@ router.post("/editRecipe/:id", function (req, res, next) {
   let RecipeID = parseInt(req.params.id);
   let token = req.cookies.jwt;
   if (token) {
-      authService.verifyUser(token).then(user => {
-          if (user) {
-              models.recipe
+      authService.verifyUser(token).then(recipe => {
+          if (recipe) {
+              models.recipes
                   .update(
                       { Title: req.body.Title, Ingredients: req.body.Ingredients },
                       { where: { RecipeID: RecipeID } })
-                  .then(user => res.redirect('/users/profile'));
+                  .then(recipe => { 
+                    res.send(JSON.stringify({ recipeData: recipe }));
+                  })
           } else {
               res.send("Sorry, there was a problem editing this recipe.");
           }
@@ -76,8 +80,11 @@ router.delete("/admin/deleteRecipe/:id", function (req, res, next) {
       authService.verifyUser(token)
           .then(user => {
               if (user.Admin) {
-                  models.recipe
-                      .then(user => res.redirect('/users/admin'));
+                  models.recipes
+                  .delete({ where: { RecipeID: RecipeID } })
+                  .then(recipe => { 
+                        res.send(JSON.stringify({ recipe }));
+                      })
               } else {
                   res.send("You are not logged in as Admin. Unable to delete recipe.");
               }
@@ -94,14 +101,16 @@ router.post("/deleteRecipe/:id", function (req, res, next) {
           .then(user => {
               if (user) {
                   models.recipe
-                      .then(user => res.redirect('/users/profile'));
+                  .then(recipe => { 
+                    res.send(JSON.stringify({ recipe }));
+                  })
               } else {
                   res.send("Unable to Delete");
               }
           });
   }
 });
-
+/*
 router.post('/createFavorite', function (req, res, next) {
   let token = req.cookies.jwt;
   //let RecipeId = parseInt(req.params.RecipeId);
@@ -131,7 +140,7 @@ router.post('/createFavorite', function (req, res, next) {
       }
   });
 });
-
+*/
 
 /*router.post('/createRecipe', function (req, res, next) {
   let token = req.cookies.jwt;
@@ -156,7 +165,7 @@ router.post('/createFavorite', function (req, res, next) {
               })
       }
   });
-});*/
+});
 
 
 router.get("/editRecipe/:id", function (req, res, next) {
@@ -194,5 +203,5 @@ router.post("/editRecipe/:id", function (req, res, next) {
       });
   }
 });
-
+*/
 module.exports = router;

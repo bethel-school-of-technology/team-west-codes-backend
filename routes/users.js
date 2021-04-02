@@ -63,7 +63,8 @@ router.post('/login', function (req, res, next) {
       if (passwordMatch) {
         let token = authService.signUser(user);
         res.cookie('jwt', token);
-        res.redirect('/users/profile')
+        res.send(JSON.stringify((req.body.Username) + ' ' + 'is logged in'))
+        //res.redirect('/users/profile')
       } else {
         console.log('Wrong password');
         res.redirect('login');
@@ -87,10 +88,10 @@ router.get('/profile', function (req, res, next) {
             include: [{
               model: models.recipes
             }]
-          }).then(userRecipesFound => {
-            console.log(userRecipesFound);
-            res.render('profile', { userData: userRecipesFound }
-            );
+          }).then(userrecipesFound => {
+            console.log(userrecipesFound);
+            res.send(JSON.stringify({ userData: userrecipesFound }));
+            //res.render('profile', { userData: userRecipesFound });
           })
         } else {
           res.status(401);
@@ -113,9 +114,8 @@ router.get('/admin', function (req, res, next) {
             Deleted: false
           }
         }).then(usersFound => {
-          res.render('admin',
-            { title: 'ADMIN PAGE', users: usersFound }
-          );
+          res.send(JSON.stringify({ userData: usersFound }));
+          //res.render('admin', { title: 'ADMIN PAGE', users: usersFound });
         })
       } else {
         res.send("Sorry, you are not authorized to view this page!");
@@ -125,7 +125,7 @@ router.get('/admin', function (req, res, next) {
 });
 
 router.get('/admin/editUser/:id', function (req, res, next) {
-  let UserID = parseInt(req.params.Id);
+  let UserID = parseInt(req.params.id);
   let token = req.cookies.jwt;
   if (token) {
     authService.verifyUser(token)
@@ -138,8 +138,8 @@ router.get('/admin/editUser/:id', function (req, res, next) {
              // model: models.recipes,
             }//]
           }).then(userrecipesFound => {
-            res.render('editUser', { userData: userrecipesFound }
-            );
+            res.send(JSON.stringify({ userData: userrecipesFound }));
+            //res.render('editUser', { userData: userrecipesFound });
           })
         } else {
           res.status(401);
@@ -158,8 +158,11 @@ router.post("/admin/delete/:id", function (req, res, next) {
         if (user.Admin) {
           models.users
             .update({ Deleted: true }, { where: { UserId: UserID } })
-            .then(user => res.redirect('/users/admin'));
-        } else {
+            .then(userdeleted => {
+              res.send(JSON.stringify({ UserID } + ' ' + 'was deleted'));
+              console.log(userdeleted);
+        }) 
+      } else {
           res.send("Sorry, there was a problem deleting the user.");
         }
       });
