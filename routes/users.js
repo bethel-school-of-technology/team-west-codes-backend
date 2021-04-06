@@ -1,24 +1,8 @@
 var express = require('express');
 var router = express.Router();
-//const mysql = require('mysql2');
 var models = require('../models');
-var passport = require('../services/passport');
 var authService = require('../services/auth');
 
-/* GET users listing. 
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-*/
-//users
-
-router.get('/', function (req, res, next) {
-  res.render('login', { title: 'Users' });
-});
-
-router.get('/signup', function (req, res, next) {
-  res.render('signup');
-});
 
 router.post('/signup', function (req, res, next) {
   models.users
@@ -35,16 +19,13 @@ router.post('/signup', function (req, res, next) {
     })
     .spread(function (result, created) {
       if (created) {
-        res.send(JSON.stringify((results)));
+        res.json({
+          message: "User created",
+          status: 200 });
       } else {
         res.send('This username already exists. Choose a different username and try again.');
       }
     });
-});
-
-
-router.get('/login', function (req, res, next) {
-  res.render('login');
 });
 
 router.post('/login', function (req, res, next) {
@@ -63,11 +44,17 @@ router.post('/login', function (req, res, next) {
       if (passwordMatch) {
         let token = authService.signUser(user);
         res.cookie('jwt', token);
-        res.send(JSON.stringify((req.body.Username) + ' ' + 'is logged in'))
-        //res.redirect('/users/profile')
+        res.json({
+          message: "User Logged in",
+          status: 200,
+          token
+        })
       } else {
         console.log('Wrong password');
-        res.redirect('login');
+        res.json({
+          message: 'Failed to login',
+          status: 400
+        });
       }
     }
   });
@@ -75,7 +62,7 @@ router.post('/login', function (req, res, next) {
 
 
 router.get('/profile', function (req, res, next) {
-  let token = req.cookies.jwt;
+  let token = gettoken(req);
   if (token) {
     authService.verifyUser(token)
       .then(user => {
@@ -91,7 +78,6 @@ router.get('/profile', function (req, res, next) {
           }).then(userrecipesFound => {
             console.log(userrecipesFound);
             res.send(JSON.stringify({ userData: userrecipesFound }));
-            //res.render('profile', { userData: userRecipesFound });
           })
         } else {
           res.status(401);
@@ -169,9 +155,8 @@ router.post("/admin/delete/:id", function (req, res, next) {
   }
 });
 
-router.get('/logout', function (req, res, next) {
-  res.cookie('jwt', "", { expires: new Date(0) });
-  res.redirect('login');
-});
-
+function getToken (req ) {
+   let token = req.headers [ "authheader" ]
+   return token;
+}
 module.exports = router;
