@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
+const associations = require('../models/rel/associations');
 var authService = require('../services/auth');
 
 
@@ -61,6 +62,44 @@ router.post('/login', function (req, res, next) {
 });
 
 
+router.get('/profile', async (req, res, next) => {
+  let appToken = req.headers.authorization;
+  console.log(appToken);
+
+  if(appToken) {
+    let currentUser = await authService.verifyUser(appToken);
+    console.log(currentUser);
+
+    if (currentUser) {
+      let responseUser = {
+        FirstName: currentUser.FirstName,
+        LastName: currentUser.LastName,
+        Email: currentUser.Email,
+        Username: currentUser.Username,
+        Deleted: currentUser.Deleted,
+        Admin: currentUser.Admin
+    }
+      res.json({
+        message: "User profile loaded successfully",
+        status: 200,
+        user: responseUser
+      })
+    }
+    else {
+      res.json({
+        message: "Token is invalid or expired",
+        status: 403
+      })
+    }
+  }
+  else {
+    res.json({
+      message: "No token received",
+      status: 403
+    })
+  }
+})
+/*
 router.get('/profile', function (req, res, next) {
   let token = gettoken(req);
   if (token) {
@@ -86,7 +125,7 @@ router.get('/profile', function (req, res, next) {
       });
   }
 });
-
+*/
 router.get('/admin', function (req, res, next) {
   
   let token = req.cookies.jwt;
